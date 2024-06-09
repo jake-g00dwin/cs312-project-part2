@@ -64,7 +64,7 @@ resource "aws_route_table_association" "main" {
 
 
 // Setup the Security group for it.
-resource "aws_security_group" "minecraft-sg" {
+resource "aws_security_group" "main" {
   vpc_id = aws_vpc.main.id
 
   // Allow inbound SSH traffic
@@ -99,7 +99,7 @@ resource "aws_instance" "minecraft" {
   // Amazon Linux AMI(2023)
   ami             = "ami-00beae93a2d981137"
   instance_type   = "t2.micro"
-  security_groups = [aws_security_group.minecraft-sg.name]
+  security_groups = [aws_security_group.main.name]
   subnet_id       = aws_subnet.main.id
   key_name        = "labuser.pem"
 
