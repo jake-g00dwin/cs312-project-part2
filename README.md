@@ -18,6 +18,7 @@ How to connect to the Minecraft server once it's running?
 
 * Clone a repo.
 * open a terminal.
+* Install needed tools
 * setup a minecraft server
 * connect to a minecraft server
 
@@ -27,25 +28,54 @@ How to connect to the Minecraft server once it's running?
 * Using a shell script to start the other tools.
 * Using Terraform for the provisioning.
 * Using Ansible for the configuration.
+* Using Nmap to check the ports of the minecraft server
 
 
 ## Requriements
 
+- A linux machine
+- standard cli utilities, like sed and bash
+- an internet connection.
+- the cli for terraform and aws
+
 ## Tools
 
-* VIM9.0+
-* yaml-language-server(LSP for vim)
-* vim-terraform plugin(helps with hignlighting)
-* AWS CLI
-* Terraform CLI
-* Bash, lots and lots of bash.
+* AWS CLI 2.0+
+* Terraform CLI 1.8.0+
+* Bash 5.1.0+
+* Ansible 2.10.0+
+* ssh 8.9+
+* nmap 7.8+
+* sed 4.8+
 
+## Credentials
 
-## Credentials/CLI
+We need to have the user's AWS credentials file in the default
+location '~/.aws/credentials'
+
 
 ## Diagram
 
+
+
 ## Commands to Run
 
+Only one command is needed to run the project assuming you have an AWS account
+and your credentials file already setup.
+
+The script will automatically create the needed ssh key for the ec2 instance
+and will skip key creation if one is already present in the directory.
+
+```sh
+chmod +x ./runit.sh
+./runit.sh
+```
+
+
 ## How to connect to the Minecraft server
+
+The connection test is carried out via nmap and is contained in the
+runit.sh script already
+
+
 
