@@ -3,6 +3,20 @@
 # Date: 2024
 # Filename: runit.sh
 
+KEY_NAME="minecraft-key.pem"
+
+function get_key () {
+    echo "Checking for key"
+
+    # Check that there isn't a key already
+    if [ -f ./${KEY_NAME}]; then
+        echo "Key found...skipping"
+        return 0
+    fi
+   
+    echo "Generating Key..." 
+    aws ec2 create-key-pair --key-name ${KEY_NAME} --query 'KeyMaterial' --output text > ${KEY_NAME}
+}
 
 function test_terraform () {
     echo "Now tesing Terrform..."
@@ -19,5 +33,6 @@ function destroy_terraform () {
     cd ../
 }
 
+get_key
 test_terraform
 
