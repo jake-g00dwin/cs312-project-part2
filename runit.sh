@@ -4,6 +4,7 @@
 # Filename: runit.sh
 
 KEY_NAME="minecraft-key.pem"
+PUBLIC_IP=""
 
 function get_key () {
     echo "Checking for key"
@@ -34,6 +35,19 @@ function destroy_terraform () {
     cd ../
 }
 
-get_key
-test_terraform
+function get_public_ip () {
+    echo "getting the public IPV4 address.."
+    cd ./src
+    PUBLIC_IP=$(terraform output | sed 's/^.*= "//' | sed 's/"//')
+    echo "PUBLIC_IP=${PUBLIC_IP}"
+    cd ../
+}
 
+function ssh_into_server () {
+    get_public_ip
+    ssh -i ./${KEY_NAME} ec2-user@${PUBLIC_IP}
+}
+
+#get_key
+#test_terraform
+#ssh_into_server
