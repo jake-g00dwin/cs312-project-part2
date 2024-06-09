@@ -28,7 +28,7 @@
 
     - name: Download the newest Minecraft server
       get_url:
-        url: "https://launcher.mojang.com/v1/objects/{{ lookup('url', 'https://launchermeta.mojang.com/mc/game/version_manifest.json') | from_json | json_query('latest.release') }}/server.jar"
+        url: "https://piston-data.mojang.com/v1/objects/84194a2f286ef7c14ed7ce0090dba59902951553/server.jar"
         dest: "/opt/minecraft/server/server.jar"
 
     - name: Create Minecraft systemd service file
