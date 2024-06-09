@@ -43,6 +43,11 @@
         dest: /usr/bin/minecraft_service.sh
         mode: '0755'
 
+    - name: Accept the Minecraft EULA, does anyone even read these things?
+      lineinfile:
+        path: /opt/minecraft/server/eula.txt
+        line: eula=true
+
     - name: Enable and start minecraft service
       systemd:
         name: minecraft
