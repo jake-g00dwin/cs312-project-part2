@@ -58,9 +58,9 @@ function nmap_server () {
     nmap -sV -Pn -p T:25565 ${PUBLIC_IP}
 }
 
-#get_key
-#run_terraform
+get_key
+run_terraform
 get_public_ip
 run_playbook
-#nmap_server
+nmap_server
 
