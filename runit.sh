@@ -9,7 +9,7 @@ function get_key () {
     echo "Checking for key"
 
     # Check that there isn't a key already
-    if [ -f ./${KEY_NAME}]; then
+    if [ -f "./${KEY_NAME}" ]; then
         echo "Key found...skipping"
         return 0
     fi
