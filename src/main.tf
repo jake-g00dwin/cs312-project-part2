@@ -1,4 +1,4 @@
-// AUthor: Jake G
+// Author: Jake G
 // Date: 2024
 // Filename: main.tf
 
@@ -102,7 +102,7 @@ resource "aws_instance" "minecraft" {
   instance_type          = var.instance_type
   subnet_id              = aws_subnet.main.id
   vpc_security_group_ids = [aws_security_group.main.id]
-  key_name               = "labuser.pem"
+  key_name               = var.key_name 
 
   tags = {
     Name = var.instance_name

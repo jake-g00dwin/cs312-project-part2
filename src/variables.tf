@@ -19,3 +19,9 @@ variable "ami" {
   type        = string
   default     = "ami-00beae93a2d981137" // Amazon Linux AMI(2023)
 }
+
+variable "key_name" {
+  description = "Name of the ssh key for the e2c"
+  type        = string
+  default     = "" 
+}
