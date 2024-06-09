@@ -8,9 +8,7 @@ function test_terraform () {
     echo "Now tesing Terrform..."
     sleep 2
     cd ./src
-    terraform init
-    terraform fmt
-    terraform apply
+    terraform init && terraform fmt && terraform apply
     cd ../
 }
 
