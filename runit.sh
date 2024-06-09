@@ -24,7 +24,7 @@ function test_terraform () {
     echo "Now tesing Terrform..."
     sleep 2
     cd ./src
-    terraform init && terraform fmt && terraform apply
+    terraform init && terraform fmt && terraform apply -auto-approve
     cd ../
 }
 
@@ -43,6 +43,7 @@ function get_public_ip () {
     cd ../
 }
 
+# Not used except for diagnostic purposes
 function ssh_into_server () {
     get_public_ip
     ssh -i ./${KEY_NAME} ec2-user@${PUBLIC_IP}
