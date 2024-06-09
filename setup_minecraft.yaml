@@ -61,7 +61,6 @@
       lineinfile:
         path: /opt/minecraft/server/eula.txt
         line: eula=true
-      when: minecraft_service_status is failed
 
     - name: Stop Minecraft server
       systemd:
