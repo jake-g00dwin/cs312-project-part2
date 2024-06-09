@@ -23,5 +23,5 @@ variable "ami" {
 variable "key_name" {
   description = "Name of the ssh key for the e2c"
   type        = string
-  default     = "" 
+  default     = "minecraft-key.pem" 
 }
