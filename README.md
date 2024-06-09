@@ -33,6 +33,11 @@ How to connect to the Minecraft server once it's running?
 
 ## Tools
 
+* VIM9.0+
+* yaml-language-server(LSP for vim)
+* vim-terraform plugin(helps with hignlighting)
+
+
 ## Credentials/CLI
 
 ## Diagram
