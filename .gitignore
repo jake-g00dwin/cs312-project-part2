@@ -4,3 +4,4 @@ src/.terraform.lock.hcl
 src/.terraform.tfstate.lock.info
 src/terraform.tfstate
 src/terraform.tfstate.backup
+minecraft-key.pem
