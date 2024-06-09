@@ -24,9 +24,9 @@ How to connect to the Minecraft server once it's running?
 
 ### How we will do it
 
-* Using shell scripts.
-* AWS
- 
+* Using a shell script to start the other tools.
+* Using Terraform for the provisioning.
+* Using Ansible for the configuration.
 
 
 ## Requriements
