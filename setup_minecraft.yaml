@@ -11,7 +11,7 @@
     - name: Add 'minecraft' user
       user:
         name: minecraft
-        password: "{{ 'minecraftadmin123' | password_hash('sha512') }}"  # Encrypt the password
+        password: "{{ 'minecraftadmin123' }}"
         shell: /bin/bash
 
     - name: Create '/opt/minecraft/server/' directory
