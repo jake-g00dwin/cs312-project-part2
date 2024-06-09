@@ -12,4 +12,12 @@ function test_terraform () {
     cd ../
 }
 
+function destroy_terraform () {
+    read -p "Hit Enter to Destroy Terraform:"
+    cd ./src
+    terraform destroy
+    cd ../
+}
+
 test_terraform
+
