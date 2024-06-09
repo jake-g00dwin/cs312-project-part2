@@ -1,0 +1,5 @@
+labsuser.pem
+src/.terraform/providers/registry.terraform.io/hashicorp/aws/4.67.0/linux_amd64
+src/.terraform.lock.hcl
+src/.terraform.tfstate.lock.info
+src/terraform.tfstate
