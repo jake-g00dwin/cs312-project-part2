@@ -26,6 +26,23 @@
         group: minecraft
         recurse: yes
 
+    - name: Download the newest Minecraft server
+      get_url:
+        url: "https://launcher.mojang.com/v1/objects/{{ lookup('url', 'https://launchermeta.mojang.com/mc/game/version_manifest.json') | from_json | json_query('latest.release') }}/server.jar"
+        dest: "/opt/minecraft/server/server.jar"
+
+    - name: Create Minecraft systemd service file
+      template:
+        src: minecraft.service.j2
+        dest: /lib/systemd/system/minecraft.service
+        mode: '0644'
+
+    - name: Copy minecraft_service.sh script to /usr/bin
+      copy:
+        src: minecraft_service.sh
+        dest: /usr/bin/minecraft_service.sh
+        mode: '0755'
+
     - name: Start Minecraft server to generate EULA
       systemd:
         name: minecraft
@@ -51,23 +68,6 @@
         name: minecraft
         state: stopped
       when: minecraft_service_status is failed
-
-    - name: Download the newest Minecraft server
-      get_url:
-        url: "https://launcher.mojang.com/v1/objects/{{ lookup('url', 'https://launchermeta.mojang.com/mc/game/version_manifest.json') | from_json | json_query('latest.release') }}/server.jar"
-        dest: "/opt/minecraft/server/server.jar"
-
-    - name: Create Minecraft systemd service file
-      template:
-        src: minecraft.service.j2
-        dest: /lib/systemd/system/minecraft.service
-        mode: '0644'
-
-    - name: Copy minecraft_service.sh script to /usr/bin
-      copy:
-        src: minecraft_service.sh
-        dest: /usr/bin/minecraft_service.sh
-        mode: '0755'
 
     - name: Enable and start minecraft service
       systemd:
