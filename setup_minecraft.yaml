@@ -5,8 +5,8 @@
 
   tasks:
     - name: Install Java 17
-      raw: |
-        sudo yum install -y java-17-openjdk-devel
+      raw: | 
+        sudo yum install -y java-17-amazon-corretto.x86_64
 
     - name: Add 'minecraft' user
       user:
@@ -26,6 +26,32 @@
         group: minecraft
         recurse: yes
 
+    - name: Start Minecraft server to generate EULA
+      systemd:
+        name: minecraft
+        state: started
+      ignore_errors: yes
+      register: minecraft_service_status
+      changed_when: minecraft_service_status is failed
+
+    - name: Wait for Minecraft server to start
+      wait_for:
+        port: 25565
+        state: started
+      when: minecraft_service_status is failed
+
+    - name: Accept the Minecraft EULA, does anyone even read these things?
+      lineinfile:
+        path: /opt/minecraft/server/eula.txt
+        line: eula=true
+      when: minecraft_service_status is failed
+
+    - name: Stop Minecraft server
+      systemd:
+        name: minecraft
+        state: stopped
+      when: minecraft_service_status is failed
+
     - name: Download the newest Minecraft server
       get_url:
         url: "https://launcher.mojang.com/v1/objects/{{ lookup('url', 'https://launchermeta.mojang.com/mc/game/version_manifest.json') | from_json | json_query('latest.release') }}/server.jar"
@@ -42,11 +68,6 @@
         src: minecraft_service.sh
         dest: /usr/bin/minecraft_service.sh
         mode: '0755'
-
-    - name: Accept the Minecraft EULA, does anyone even read these things?
-      lineinfile:
-        path: /opt/minecraft/server/eula.txt
-        line: eula=true
 
     - name: Enable and start minecraft service
       systemd:
