@@ -20,7 +20,7 @@ function get_key () {
     chmod 0400 ./${KEY_NAME}
 }
 
-function test_terraform () {
+function run_terraform () {
     echo "Now tesing Terrform..."
     sleep 2
     cd ./src
@@ -59,5 +59,8 @@ function nmap_server () {
 }
 
 #get_key
-#test_terraform
-#ssh_into_server
+#run_terraform
+get_public_ip
+run_playbook
+#nmap_server
+
