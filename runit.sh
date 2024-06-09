@@ -13,7 +13,7 @@ function get_key () {
         echo "Key found...skipping"
         return 0
     fi
-   
+ 
     echo "Generating Key..." 
     aws ec2 create-key-pair --key-name ${KEY_NAME} --query 'KeyMaterial' --output text > ${KEY_NAME}
 }
