@@ -35,7 +35,7 @@ resource "aws_vpc" "main" {
 // Setup the subnet
 resource "aws_subnet" "main" {
   vpc_id            = aws_vpc.main.id
-  cidr_block        = "10.0.0.0/24"
+  cidr_block        = "10.0.1.0/24"
   availability_zone = "us-east-1a"
 }
 
@@ -90,14 +90,17 @@ resource "aws_security_group" "main" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  tags = {
+    Name = "mcsg"
+  }
 }
 
 // Create the Instance
 resource "aws_instance" "minecraft" {
   ami             = var.ami 
   instance_type   = var.instance_type 
-  security_groups = [aws_security_group.main.name]
   subnet_id       = aws_subnet.main.id
+  security_groups = [aws_security_group.main.name]
   key_name        = "labuser.pem"
 
   tags = {
