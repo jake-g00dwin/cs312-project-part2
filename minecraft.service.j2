@@ -1,0 +1,13 @@
+[Unit]
+Description=Minecraft Server
+After=network.target
+
+[Service]
+User=minecraft
+WorkingDirectory=/opt/minecraft/server/
+ExecStart=/usr/bin/minecraft_service.sh
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
