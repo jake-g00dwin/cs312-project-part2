@@ -7,3 +7,15 @@ variable "instance_name" {
   type        = string
   default     = "minecraft-server"
 }
+
+variable "instance_type" {
+  description = "Type of EC2 Instance"
+  type        = string
+  default     = "t2.micro"
+}
+
+variable "ami" {
+  description = "Type of AMI"
+  type        = string
+  default     = "ami-00beae93a2d981137" // Amazon Linux AMI(2023)
+}

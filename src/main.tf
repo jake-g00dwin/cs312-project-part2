@@ -92,13 +92,10 @@ resource "aws_security_group" "main" {
   }
 }
 
-
-
 // Create the Instance
 resource "aws_instance" "minecraft" {
-  // Amazon Linux AMI(2023)
-  ami             = "ami-00beae93a2d981137"
-  instance_type   = "t2.micro"
+  ami             = var.ami 
+  instance_type   = var.instance_type 
   security_groups = [aws_security_group.main.name]
   subnet_id       = aws_subnet.main.id
   key_name        = "labuser.pem"
