@@ -109,4 +109,14 @@ The connection test is carried out via nmap and is contained in the
 runit.sh script already
 
 
+## SOURCES/RESOURCES USED
+
+[ansible docs](https://docs.ansible.com/)
+[Terraform Registry](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
+[Terraform Docs](https://terraform-docs.io/user-guide/introduction/)
+[Terraform Auto apply](https://www.educative.io/answers/how-to-use--auto-approve-flag-with-terraform-apply)
+[Terraform Auto approve](https://developer.hashicorp.com/terraform/cli/commands/apply)
+[Bash ref manual](https://www.gnu.org/software/bash/manual/bash.html)
+[ascii flow](https://asciiflow.com/#/)
+[AWS CLI ref](https://docs.aws.amazon.com/cli/latest/reference/#available-services)
 
