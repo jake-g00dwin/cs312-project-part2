@@ -66,6 +66,7 @@ resource "aws_route_table_association" "main" {
 // Setup the Security group for it.
 resource "aws_security_group" "main" {
   vpc_id = aws_vpc.main.id
+  name   = "mcsg"
 
   // Allow inbound SSH traffic
   // I guess I could change the port if I felt fancy meh
@@ -97,14 +98,16 @@ resource "aws_security_group" "main" {
 
 // Create the Instance
 resource "aws_instance" "minecraft" {
-  ami             = var.ami 
-  instance_type   = var.instance_type 
-  subnet_id       = aws_subnet.main.id
-  security_groups = [aws_security_group.main.name]
-  key_name        = "labuser.pem"
+  ami                    = var.ami
+  instance_type          = var.instance_type
+  subnet_id              = aws_subnet.main.id
+  vpc_security_group_ids = [aws_security_group.main.id]
+  key_name               = "labuser.pem"
 
   tags = {
     Name = var.instance_name
   }
+
+  depends_on = [aws_security_group.main]
 }
 
