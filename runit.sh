@@ -16,6 +16,7 @@ function get_key () {
  
     echo "Generating Key..." 
     aws ec2 create-key-pair --key-name ${KEY_NAME} --query 'KeyMaterial' --output text > ${KEY_NAME}
+    chmod 0400 ./${KEY_NAME}
 }
 
 function test_terraform () {
