@@ -36,6 +36,9 @@ How to connect to the Minecraft server once it's running?
 * VIM9.0+
 * yaml-language-server(LSP for vim)
 * vim-terraform plugin(helps with hignlighting)
+* AWS CLI
+* Terraform CLI
+* Bash, lots and lots of bash.
 
 
 ## Credentials/CLI
