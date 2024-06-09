@@ -48,6 +48,15 @@ function ssh_into_server () {
     ssh -i ./${KEY_NAME} ec2-user@${PUBLIC_IP}
 }
 
+function run_playbook () {
+    export ANSIBLE_HOSTS="${PUBLIC_IP}"
+    ansible-playbook ./setup_minecraft.yaml
+}
+
+function nmap_server () {
+    nmap -sV -Pn -p T:25565 ${PUBLIC_IP}
+}
+
 #get_key
 #test_terraform
 #ssh_into_server
