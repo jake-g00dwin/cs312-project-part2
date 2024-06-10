@@ -1,5 +1,8 @@
 # cs312-project-part2
 
+**warning:** You will probably want to change the type of instance to
+something with more resources for actual usage as a minecraft server.
+It's currently set so it minimizes the cost of running it.
 
 Background: What will we do? How will we do it? 
 Requirements:
@@ -120,3 +123,8 @@ runit.sh script already
 [ascii flow](https://asciiflow.com/#/)
 [AWS CLI ref](https://docs.aws.amazon.com/cli/latest/reference/#available-services)
 
+## Other
+Stuff from class, I started off using the main.tf from lab9, and
+used some of my copy pasta kung-fu from canvas/previous labs/lecture.
+
+Ah, I also used man pages to check for arguments, on sed.
