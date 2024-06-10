@@ -1,12 +1,12 @@
 ---
-- name: Install Java 17 and Set Up Minecraft Server
+- name: Install Java 22 and Set Up Minecraft Server
   hosts: "{{ lookup('env', 'ANSIBLE_HOSTS') }}"
   become: yes
 
   tasks:
-    - name: Install Java 17
+    - name: Install Java 22
       raw: | 
-        sudo yum install -y java-17-amazon-corretto.x86_64
+        sudo yum install -y java-22-amazon-corretto.x86_64
 
     - name: Add 'minecraft' user
       user:
@@ -61,12 +61,18 @@
       lineinfile:
         path: /opt/minecraft/server/eula.txt
         line: eula=true
+      when: minecraft_service_status is failed
 
     - name: Stop Minecraft server
       systemd:
         name: minecraft
         state: stopped
       when: minecraft_service_status is failed
+
+    - name: Accept the Minecraft EULA, does anyone even read these things?
+      lineinfile:
+        path: /opt/minecraft/server/eula.txt
+        line: eula=true
 
     - name: Enable and start minecraft service
       systemd:
