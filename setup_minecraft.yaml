@@ -43,6 +43,12 @@
         dest: /usr/bin/minecraft_service.sh
         mode: '0755'
 
+    - name: Enable and start minecraft service
+      systemd:
+        name: minecraft
+        enabled: yes
+        state: started
+
     - name: Start Minecraft server to generate EULA
       systemd:
         name: minecraft

@@ -11,7 +11,7 @@ variable "instance_name" {
 variable "instance_type" {
   description = "Type of EC2 Instance"
   type        = string
-  default     = "t2.micro"
+  default     = "t3.small"
 }
 
 variable "ami" {
