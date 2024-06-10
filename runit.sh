@@ -61,7 +61,7 @@ function nmap_server () {
     echo "Wait for a bit, the server/world takes awhile to start up."
     sleep 5
     echo "Yea...it really isn't very fast."
-    sleep 30
+    sleep 35
     nmap -sV -Pn -p T:25565 ${PUBLIC_IP}
 }
 

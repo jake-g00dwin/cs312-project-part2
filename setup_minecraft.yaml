@@ -43,15 +43,10 @@
         dest: /usr/bin/minecraft_service.sh
         mode: '0755'
 
-    - name: Enable and start minecraft service
-      systemd:
-        name: minecraft
-        enabled: yes
-        state: started
-
     - name: Start Minecraft server to generate EULA
       systemd:
         name: minecraft
+        enabled: yes
         state: started
       ignore_errors: yes
       register: minecraft_service_status
@@ -74,6 +69,10 @@
         name: minecraft
         state: stopped
       when: minecraft_service_status is failed
+
+    - name: Wait till files are generated...
+      pause:
+        seconds: 15
 
     - name: Accept the Minecraft EULA, does anyone even read these things?
       lineinfile:
