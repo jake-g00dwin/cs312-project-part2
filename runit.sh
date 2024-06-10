@@ -26,6 +26,8 @@ function run_terraform () {
     cd ./src
     terraform init && terraform fmt && terraform apply -auto-approve
     cd ../
+    echo "wait for instance to setup a bit..."
+    sleep 35
 }
 
 function destroy_terraform () {
@@ -56,6 +58,10 @@ function run_playbook () {
 }
 
 function nmap_server () {
+    echo "Wait for a bit, the server/world takes awhile to start up."
+    sleep 5
+    echo "Yea...it really isn't very fast."
+    sleep 30
     nmap -sV -Pn -p T:25565 ${PUBLIC_IP}
 }
 
